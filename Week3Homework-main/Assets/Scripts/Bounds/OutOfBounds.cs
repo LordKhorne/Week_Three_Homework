@@ -2,9 +2,30 @@
 
 public class OutOfBounds : MonoBehaviour
 {
+    
+    [SerializeField] private Ball ballin;
+    [SerializeField] private GameObject ball = null;
+    [SerializeField] private GameObject paddle = null;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //TODO: Implement functionality to reset the game somehow.
-        // Resetting the game includes destroying the out of bounds ball and creating a new one ready to be launched from the paddle
+        if (collision.transform.parent == null)
+        {
+
+            Destroy(collision.gameObject);
+            Instantiate(ball, paddle.transform.position + new Vector3(0, 0.4f, 0), Quaternion.identity);
+
+        }
+        else
+        {
+
+            Destroy(collision.transform.parent.gameObject);
+            Instantiate(ball, paddle.transform.position + new Vector3(0, 0.4f, 0), Quaternion.identity);
+
+        }
+        
+
+        ballin.notLaunch();
+
     }
 }

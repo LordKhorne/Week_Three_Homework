@@ -8,15 +8,23 @@ public class GameManager : MonoBehaviour
     public const int TOTAL_ROWS = 10;
 
     [SerializeField]
-    private Transform pieces = null;
-
-    [SerializeField]
     private GameObject piecePrefab = null;
 
-    [SerializeField]
-    private EdgeCollider2D border;
+    void Start()
+    {
+        //TODO
+        //Using const data defined above "Instantiate" new pieces to fill the view with
+        for(int i = 0; i < TOTAL_ROWS; i++)
+        {
+            for(int j = 0; j < PIECE_COUNT_PER_ROW; j++)
+            {
 
+                Instantiate(piecePrefab, new Vector3(-6.0f + (j * PIECE_LENGTH), 4.75f - (i * ROW_HEIGHT)), Quaternion.identity);
 
-    //TODO
-    //Using const data defined above "Instantiate" new pieces to fill the view with
+            }
+
+        }
+
+    }
+
 }

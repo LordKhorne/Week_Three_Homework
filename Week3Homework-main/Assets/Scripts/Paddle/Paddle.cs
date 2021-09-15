@@ -3,24 +3,32 @@
 public class Paddle : MonoBehaviour
 {
 
-    public float paddleSpeed = 8.0f;
-    [SerializeField] private Ball ballin;
+    public float paddleSpeed = 10.0f;
+    private Ball ball = null;
 
     private void Start()
     {
 
+        ball = GameObject.Find("Ball").GetComponent<Ball>();
 
     }
 
     private void Update()
     {
 
-        move();
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (ball == null)
         {
 
+            ball = GameObject.Find("Ball(Clone)").GetComponent<Ball>();
 
+        }
+
+        move();
+
+        if (Input.GetKeyDown(KeyCode.Space) && !ball.getLaunched())
+        {
+
+            ball.launch();
 
         }
 
@@ -52,6 +60,5 @@ public class Paddle : MonoBehaviour
     }
 
     //TODO
-    // Paddle should be able to launch the ball upon space bar being pressed
     // A launched ball will then bounce around, changing its direction upon any collision
 }
